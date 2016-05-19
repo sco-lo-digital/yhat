@@ -13,6 +13,13 @@ fitControl <- trainControl(method = "repeatedcv",
                            ## Evaluate performance using 
                            ## the following function
                            summaryFunction = twoClassSummary)
+                           
+
+gbmGrid <-  expand.grid(interaction.depth = c(1, 5, 9),
+                        n.trees = (1:30)*50,
+                        shrinkage = 0.1,
+                        n.minobsinnode = 20)
+                        
 set.seed(825)
 gbmFit3 <- train(Class ~ ., data = training,
                  method = "gbm",
